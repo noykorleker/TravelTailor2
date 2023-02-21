@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "851181152501",
+    "project_id": "travel-tailor-6a471",
+    "storage_bucket": "travel-tailor-6a471.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851181152501:android:54d1e47633358ada5bfdbc",
+        "android_client_info": {
+          "package_name": "com.example.traveltailor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851181152501-n5m5l6ler9gqukt1fdm416jaakg4dmpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFLA7OCyo-QR2Z4MzB4agAYLqes1R1iqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851181152501-n5m5l6ler9gqukt1fdm416jaakg4dmpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

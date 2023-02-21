@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TravelTailor</string>
+    <string name="preferences_prompt">Select your preferences</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preferences">
+        <item>Wineries</item>
+        <item>Equestrian sports</item>
+        <item>Beaches</item>
+        <item>Hiking</item>
+        <item>Cultural activities</item>
+    </string-array>
+</resources>
