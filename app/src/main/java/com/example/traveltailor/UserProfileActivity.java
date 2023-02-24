@@ -21,18 +21,18 @@ public class UserProfileActivity extends AppCompatActivity {
     private Button mSaveButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_user);
 
-        mUserPhoto = findViewById(R.id.user_photo);
+        /*mUserPhoto = findViewById(R.id.user_photo);
         mUserName = findViewById(R.id.user_name);
         mUserEmail = findViewById(R.id.user_email);
         mUserAge = findViewById(R.id.user_age);
         mPreferencesSpinner = findViewById(R.id.preferences_spinner);
         mSaveButton = findViewById(R.id.save_button);
-
-        // Set the spinner adapter with preferences list
+*/
+     /*   // Set the spinner adapter with preferences list
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.preferences, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -44,9 +44,9 @@ public class UserProfileActivity extends AppCompatActivity {
                 saveUserProfile();
             }
         });
-    }
+    }*/
 
-    private void saveUserProfile() {
+/*    private void saveUserProfile() {
         // Get the user profile details from UI components
         String userName = mUserName.getText().toString();
         String userEmail = mUserEmail.getText().toString();
@@ -57,5 +57,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         // Show a toast message to indicate the profile has been saved
         Toast.makeText(this, "User profile saved", Toast.LENGTH_SHORT).show();
+    }*/
     }
 }

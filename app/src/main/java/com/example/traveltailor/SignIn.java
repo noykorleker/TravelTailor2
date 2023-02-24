@@ -2,12 +2,13 @@ package com.example.traveltailor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,30 +17,36 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class SignIn extends AppCompatActivity {
 
-    private static final String TAG = "RegistrationActivity";
+    private static final String TAG = "SignIn";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
     private Button mRegisterButton;
     private Button mAnonymousButton;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_sign_in);
 
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
+        // Initialize UI elements
+        mEmailEditText = findViewById(R.id.email_edit_text);
+        mPasswordEditText = findViewById(R.id.password_edit_text);
+        mRegisterButton = findViewById(R.id.register_button);
+        mAnonymousButton = findViewById(R.id.anonymous_button);
+        textView = findViewById(R.id.move_to_login);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
+                if (user != null) {
                     //user is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
@@ -49,24 +56,23 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        // Initialize UI elements
-        mEmailEditText = (EditText) findViewById(R.id.email_edit_text);
-        mPasswordEditText = (EditText) findViewById(R.id.password_edit_text);
-        mRegisterButton = (Button) findViewById(R.id.register_button);
-        mAnonymousButton = (Button) findViewById(R.id.anonymous_button);
-
         // Set click listeners for buttons
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerWithEmailAndPassword();
+                createUserWithEmailAndPassword();
             }
         });
-
         mAnonymousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 registerAnonymously();
+            }
+        });
+        textView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                Intent intent = new Intent( SignIn.this, LogIn.class);
+                startActivity(intent);
             }
         });
     }
@@ -79,17 +85,19 @@ public class RegistrationActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Anonymous sign-in successful
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(SignIn.this, UserProfileActivity.class);
+                            startActivity(intent);
                             // TODO: Implement what should happen after successful sign-in
                         } else {
                             // Anonymous sign-in failed
-                            Toast.makeText(RegistrationActivity.this,
+                            Toast.makeText(SignIn.this,
                                     "Anonymous sign-in failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    private void registerWithEmailAndPassword() {
+    private void createUserWithEmailAndPassword() {
         String email = mEmailEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
 
@@ -98,17 +106,19 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Toast.makeText(SignIn.this,
+                                    "Registration successful", Toast.LENGTH_SHORT).show();
                             // User registration successful
                             FirebaseUser user = mAuth.getCurrentUser();
-                            // TODO: Implement what should happen after successful registration
+                            Intent intent = new Intent(SignIn.this, LogIn.class);
+                            startActivity(intent);
                         } else {
                             // User registration failed
-                            Toast.makeText(RegistrationActivity.this,
+                            Toast.makeText(SignIn.this,
                                     "Registration failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 }
-
 
